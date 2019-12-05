@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const InputItem = ({ 
+export const InputItem = ({
   wrapperClass,
   inputClass,
   inputId,
   inputType,
   inputValue,
   inputName,
+  checked,
   labelTitle }) => {
+
   return (
     <div className={wrapperClass }>
       <input
@@ -17,6 +19,7 @@ export const InputItem = ({
         type={inputType || 'text'}
         value={inputValue}
         name={inputName}
+        defaultChecked={checked}
       />
       <label htmlFor={inputId} > {labelTitle} </label>
     </div>
