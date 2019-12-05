@@ -20,6 +20,7 @@
 }
 
 .Logo {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,6 +159,7 @@
 
 .TicketsList {
   width: calc(100% - 260px);
+  padding: 0;
 }
 
 .Filters__group {
