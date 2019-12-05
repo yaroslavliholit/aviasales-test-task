@@ -1,0 +1,330 @@
+.MainContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Main{
+  overflow: hidden;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.Filters {
+  width: 232px;
+  padding: 15px 0;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 0px 1px 4px rgba(91,137,164,0.25);
+}
+
+.Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.TicketItem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 161px;
+  max-width: 750px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 0px 1px 4px rgba(91,137,164,0.25);
+}
+
+.TicketItem__promo {
+  width: 200px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #eceff1;
+}
+
+.TicketItem__promo img {
+  object-fit: contain;
+}
+
+.TicketItem__info {
+  display: flex;
+  justify-content: space-between;
+  padding: 26px;
+  width: calc(100% - 200px);
+}
+
+.Transfer {
+  position: relative;
+  width: 30%;
+}
+
+.Transfer p {
+  position: relative;
+  min-height: 19px;
+  padding-bottom: 8px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #d2d5d6;
+  text-align: center;
+  color: #8b9497;
+}
+
+.Transfer img {
+  position: absolute;
+  top: 17.5px;
+  right: -25px;
+  width: 25px;
+  height: 20px;
+}
+
+/* Btn */
+.Btn {
+  width: 160px;
+  padding: 10px 5px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background: #ff6d00;
+  box-shadow: 0px 2px 1px rgba(0,0,0,0.1);
+  box-shadow: 0px 1px #d64d08;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  transition: .5s all;
+}
+
+.Btn:hover {
+  background: #df680e;
+  transition: .5s all;
+}
+
+/* Btn */
+
+.ValutaIcon {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+}
+
+/* Step start */
+.Step {
+  width: 35%;
+}
+
+.Step:first-child {
+  text-align: left;
+}
+
+.Step:last-child {
+  text-align: right;
+}
+
+.Step time {
+  display: block;
+  margin-bottom: 15px;
+  color: #4a4a4a;
+  font-family: "Open Sans";
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 26px;
+}
+
+.Step__city {
+  color: #4a4a4a;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.Step__date {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+/* Step end */
+
+.TicketsList {
+  width: calc(100% - 260px);
+}
+
+.Filters__group {
+  border: none;
+  padding: 0;
+}
+
+.Filters__title {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  color: #4a4a4a;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.Transfer__group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 0px 8px 15px;
+  transition: .5s all;
+}
+
+.Transfer__group:hover {
+  background: #f1fcff;
+  transition: .5s all;
+}
+
+.Transfer__group:hover:after {
+  content: 'Только';
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: #2196f3;
+  font-family: "Open Sans";
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 35px;
+  text-transform: uppercase;
+  transition: .5s all;
+}
+
+.Transfer__group label {
+  position: relative;
+  font-family: "Open Sans";
+  font-weight: 300;
+  padding-left: 15px;
+  color: #4a4a4a;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Transfer__group input {
+  width: 19px;
+  height: 19px;
+}
+
+
+.styledCheckbox {
+  position: absolute; 
+  opacity: 0;
+  transition: .5s all;
+}
+
+.styledCheckbox + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    transition: .5s all;
+}
+
+.styledCheckbox  + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 1px solid #d2d5d6;
+    border-radius: 3px;
+    transition: .5s all;
+}
+
+.styledCheckbox:checked + label:before {
+  border: solid 1px #2196f3;
+  background: #f2fcff;
+  transition: .5s all;
+}
+
+.styledCheckbox:checked + label:after {
+  content: '✔';
+  color: #2196f3;
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Filters__group {
+  border: none;
+  padding: 0;
+}
+
+.Filters__title {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  color: #4a4a4a;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.RarioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 15px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.RarioGroup__item {
+  position: relative;
+  width: calc(100% / 3);
+}
+
+input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.RarioGroup__item label {
+  display: block;
+  background: #ffffff;
+  padding: 12px 0px;
+  color: #2196f3;
+  font-family: "Open Sans";
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  border: solid 1px #d2d5d6;
+  transition: .5s all;
+  user-select: none;
+}
+
+.RarioGroup__item:first-child label {
+  border-radius: 4px 0 0 4px;
+}
+
+.RarioGroup__item:last-child label {
+  border-radius: 0 4px 4px 0;
+}
+
+.RarioGroup__item label:hover {
+  border: solid 1px #64b5f5;
+  background: #f2fcff;
+  transition: .5s all;
+}
+
+.RarioGroup__item input[type="radio"]:checked + label {
+  background: #2196f3;
+  border: solid 1px #2196f3;
+  color: white;
+  transition: .5s all;
+}
