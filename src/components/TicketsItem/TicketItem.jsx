@@ -1,10 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import TicketItemStep from '../TicketItemStep';
-
+import { transferFormatter } from '../../helpers/transferFormatter';
 import companyLogo from '../../img/logo.png';
 import airplane from '../../img/airplane.svg';
+
+const findActiveValuta = valutaData => {
+  let activeValuta = null;
+  valutaData.forEach(valuta => {
+    if ( valuta.checked === true ) {
+      activeValuta = valuta;
+    }
+  });
+
+  return activeValuta;
+}
+
+const setupPrice = (price, valutaData) => Math.round(price / findActiveValuta(valutaData).rates);
+
+const setupIconPrice = valutaData => findActiveValuta(valutaData).ico;
 
 export const TicketItem = ({
   valutaData,
@@ -19,11 +33,18 @@ export const TicketItem = ({
   destination_name,
   arrival_date
 }) => {
+
   return (
     <li className="TicketItem">
       <div className="TicketItem__promo">
         <img src={companyLogo} alt="companyLogo"/>
-        <button className="Btn">{ `Купить ${price}` }</button>
+        <button className="Btn">
+          Купить
+          <span className="BtnPrice">
+            {`за ${ setupPrice(price, valutaData) }`}
+            <img className="ValutaIcon" src={setupIconPrice(valutaData)} alt="Icon Price"/>
+          </span>
+        </button>
       </div>
       <div className="TicketItem__info">
         <TicketItemStep
@@ -34,7 +55,7 @@ export const TicketItem = ({
         />
 
         <div className="Transfer">
-          <p>{ stops === 0 ? null : `${stops} пересадка` }</p>
+          <p>{ stops === 0 ? null : `${stops} ${transferFormatter(stops)}` }</p>
           <img src={airplane} alt="airplane"/>
         </div>
 
@@ -50,7 +71,6 @@ export const TicketItem = ({
 };
 
 TicketItem.propTypes = {
-  valutaData: PropTypes.string,
   price: PropTypes.number,
   departure_time: PropTypes.string,
   origin: PropTypes.string,

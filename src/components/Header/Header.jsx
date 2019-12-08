@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-export const Logo = ({src}) => {
+export const Header = ({src}) => {
   return (
-    <div className="Logo">
+    <header className="Logo">
       <img src={src} alt="Logo"/>
-    </div>
+    </header>
   );
 };
 
-Logo.propTypes = {
+Header.propTypes = {
   src: PropTypes.string,
 };

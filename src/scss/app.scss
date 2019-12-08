@@ -1,0 +1,421 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $fontFamily;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.MainContent {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.Main {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.Filters {
+  position: sticky;
+  top: 10px;
+  width: 230px;
+  margin-right: 30px;
+  padding: 15px 0;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: $boxShadow;
+}
+
+.Logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.TicketItem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 161px;
+  max-width: 750px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: $boxShadow;
+}
+
+.TicketItem__promo {
+  width: 200px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #eceff1;
+}
+
+.TicketItem__promo img {
+  object-fit: contain;
+}
+
+.TicketItem__info {
+  display: flex;
+  justify-content: space-between;
+  padding: 26px;
+  width: calc(100% - 200px);
+}
+
+.Transfer {
+  position: relative;
+  width: 30%;
+}
+
+.Transfer p {
+  position: relative;
+  min-height: 19px;
+  padding-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #d2d5d6;
+  text-align: center;
+  color: #8b9497;
+}
+
+.Transfer img {
+  position: absolute;
+  top: 17.5px;
+  right: -25px;
+  width: 25px;
+  height: 20px;
+}
+
+.Btn {
+  width: 160px;
+  padding: 10px 5px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background: $colorBtn;
+  box-shadow: $boxShadow;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.Btn:hover {
+  background: $colorBtn;
+  transition: $transition;
+}
+
+.BtnPrice {
+  display: block;
+}
+
+.ValutaIcon {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+}
+
+.Step {
+  width: 35%;
+}
+
+.Step:first-child {
+  text-align: left;
+}
+
+.Step:last-child {
+  text-align: right;
+}
+
+.Step time {
+  display: block;
+  margin-bottom: 15px;
+  color: $fontColor;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 26px;
+}
+
+.Step__city {
+  color: $fontColor;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.Step__date {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.TicketsList {
+  width: calc(100% - 260px);
+  padding: 0;
+  margin: 0;
+}
+
+.Filters__group {
+  border: none;
+  padding: 0;
+}
+
+.Filters__title {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  color: $fontColor;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.Transfer__group {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.Transfer__group:hover {
+  background: #f1fcff;
+  transition: $transition;
+}
+
+.Transfer__group:after {
+  content: 'Только';
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  color: $colorPrimary;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 35px;
+  text-transform: uppercase;
+}
+
+.Transfer__group:hover:after {
+  top: 0;
+  transition: $transition
+}
+
+.Transfer__group label {
+  position: relative;
+  font-weight: 300;
+  padding-left: 15px;
+  color: $fontColor;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Transfer__group input {
+  width: 19px;
+  height: 19px;
+}
+
+.styledCheckbox {
+  position: absolute;
+  opacity: 0;
+  transition: $transition;
+}
+
+.styledCheckbox+label {
+  position: relative;
+  width: 100%;
+  padding: 8px 0px 8px 15px;
+  z-index: 10;
+  cursor: pointer;
+  transition: $transition;
+}
+
+.styledCheckbox+label:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 1px solid #d2d5d6;
+  border-radius: 3px;
+}
+
+.styledCheckbox:checked+label:before {
+  border: solid 1px $colorPrimary;
+  background: #f2fcff;
+  transition: $transition;
+}
+
+.styledCheckbox+label:after {
+  opacity: 0;
+  content: '✔';
+  color: $colorPrimary;
+  position: absolute;
+  left: 27px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.styledCheckbox:checked+label:after {
+  opacity: 1;
+  transition: $transition;
+}
+
+.Filters__group {
+  border: none;
+  padding: 0;
+}
+
+.Filters__title {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  color: $fontColor;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.RarioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 15px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.RarioGroup__item {
+  position: relative;
+  width: calc(100% / 3);
+}
+
+input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.RarioGroup__item label {
+  display: block;
+  background: #ffffff;
+  padding: 12px 0px;
+  color: $colorPrimary;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  border: solid 1px #d2d5d6;
+  transition: $transition;
+  user-select: none;
+}
+
+.RarioGroup__item:first-child label {
+  border-radius: 4px 0 0 4px;
+}
+
+.RarioGroup__item:last-child label {
+  border-radius: 0 4px 4px 0;
+}
+
+.RarioGroup__item label:hover {
+  border: solid 1px #64b5f5;
+  background: #f2fcff;
+  transition: $transition
+}
+
+.RarioGroup__item input[type="radio"]:checked+label {
+  background-color: $colorPrimary;
+  border: solid 1px $colorPrimary;
+  color: white;
+  transition: $transition
+}
+
+.RarioGroup__item input[type="radio"]:focus+label {
+  border: solid 1px $colorPrimary;
+}
+
+.emptySearch {
+  padding: 35px 0;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: $boxShadow;
+  text-align: center;
+  color: $fontColor;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+// Loader
+.LoaderWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 50;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.Loader {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite, 
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% { stroke: $colorPrimary; }
+  50% { stroke: $colorBtn; }
+  100% { stroke: $colorPrimary; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}

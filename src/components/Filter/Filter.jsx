@@ -1,12 +1,11 @@
 import React from 'react';
-import InputItem from '../InputItem';
 
-export const Filter = ({valutaInputs, valutaChange, transferInputs}) => {
+export const Filter = ({valutaInputs, valutaChange, transferInputs, transferChange, filterTransfer}) => {
   return (
     <aside className='Filters'>
       <form>
         <fieldset className='Filters__group'>
-          <legend className='Filters__title'>ВАЛЮТА</legend>
+          <legend className='Filters__title'>Валюта</legend>
           <div className='RarioGroup'>
             {
               valutaInputs.map((input, index) => {
@@ -15,11 +14,11 @@ export const Filter = ({valutaInputs, valutaChange, transferInputs}) => {
                     <input
                       className='my-awesome-checkbox'
                       id={input.inputValue}
-                      type={input.inputType || 'text'}
+                      type='radio'
                       value={input.inputValue}
-                      name={input.inputName}
+                      name='currency'
                       defaultChecked={input.checked}
-                      onChange={ () => valutaChange(index) }
+                      onChange={ () => valutaChange(index, input.inputValue) }
                     />
                     <label htmlFor={input.inputValue} > {input.inputValue} </label>
                   </div>
@@ -32,21 +31,22 @@ export const Filter = ({valutaInputs, valutaChange, transferInputs}) => {
 
       <form>
         <fieldset className="Filters__group">
-          <legend className="Filters__title">КОЛИЧЕСТВО ПЕРЕСАДОК</legend>
+          <legend className="Filters__title">Колличество пересадок</legend>
           {
-            transferInputs.map(input => {
+            transferInputs.map((input, index) => {
               return (
-                <InputItem 
-                  key={input.inputId}
-                  wrapperClass="Transfer__group"
-                  inputClass="styledCheckbox"
-                  inputId={input.inputId}
-                  inputType={input.inputType}
-                  inputValue={input.inputValue}
-                  inputName={input.inputName}
-                  labelTitle={input.labelTitle}
-                  checked={input.checked}
-                />
+                <div className="Transfer__group" key={input.inputId}>
+                  <input
+                    className='styledCheckbox'
+                    id={input.inputId}
+                    type='checkbox'
+                    value={input.inputValue}
+                    name='options'
+                    defaultChecked={input.checked}
+                    onChange={() => { transferChange(index, input.inputValue); filterTransfer(); } }
+                  />
+                  <label htmlFor={input.inputId} > {input.labelTitle} </label>
+                </div>
               )
             })
           }
