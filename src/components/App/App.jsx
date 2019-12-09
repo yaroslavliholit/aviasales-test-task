@@ -4,6 +4,7 @@ import Filter from '../Filter';
 import TicketsList from '../TicketsList';
 import Loader from '../Loader'
 import { sortingArray } from '../../helpers/sortingArray';
+import { http } from '../../services/http';
 import logo from '../../img/logo.svg';
 import RUB from '../../img/rub.svg';
 import EUR from '../../img/eur.svg';
@@ -80,22 +81,13 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    const URL = 'http://localhost:3000/data/tickets.json';
-    const XHR = new XMLHttpRequest();
-  
-    XHR.open('GET', URL);
-    XHR.send();
-  
-    XHR.addEventListener('readystatechange', () => {
-      if( XHR.readyState === 4 && XHR.status === 200 ) {
-        const responce = JSON.parse(XHR.response);
-
+    http('http://localhost:3000/data/tickets.json')
+      .then(data => {
         this.setState({
-          ticketsList: sortingArray(responce.tickets),
+          ticketsList: sortingArray(data.tickets),
           isLoading: false,
         });
-      }
-    });
+      });
   }
 
   render() {
