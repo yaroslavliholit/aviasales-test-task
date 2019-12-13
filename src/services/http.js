@@ -1,8 +1,10 @@
-export const http = async (url) => {
-  const res = await fetch(`${url}`);
+const ticketsUrl = 'http://localhost:3000/data/tickets.json';
+
+export const getTickets = async () => {
+  const res = await fetch(ticketsUrl);
 
   if(!res.ok) {
-    throw new Error(`Error fetch from ${url}, status: ${res.status}`);
+    throw new Error(`Error fetch from ${ticketsUrl}, status: ${res.status}`);
   }
 
   return res.json();

@@ -4,7 +4,9 @@ import Filter from '../Filter';
 import TicketsList from '../TicketsList';
 import Loader from '../Loader'
 import { sortingArray } from '../../helpers/sortingArray';
-import { http } from '../../services/http';
+import { getTickets } from '../../services/http';
+import ErrorBoundary from '../ErrorBoundary';
+
 import logo from '../../img/logo.svg';
 import RUB from '../../img/rub.svg';
 import EUR from '../../img/eur.svg';
@@ -14,8 +16,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
-      ticketsList: [],
+      isLoading: false,
+      ticketsList: null,
       valutaInputs: [
         { inputValue: 'RUB', checked: true, ico: RUB, rates: 1 },
         { inputValue: 'USD', checked: false, ico: USD, rates: 63 },
@@ -58,21 +60,19 @@ export default class App extends Component {
    * Инвертируем значение checked в элементе массива transferInputs по полученому индексу
    */
 
-  changeTransferHandler = (index, valueData) => {
-    const transferInputsState = [...this.state.transferInputs];
-    transferInputsState.forEach((item, num) => {
+  changeTransferHandler = (index) => {
+    const transferInputs = [...this.state.transferInputs];
+    transferInputs.forEach((item, num) => {
       if ( num === index) {
-        transferInputsState[num].checked = !transferInputsState[num].checked;
+        transferInputs[num].checked = !transferInputs[num].checked;
       }
     });
 
-    this.setState({
-      transferInputs: transferInputsState
-    });
+    this.setState({ transferInputs });
   }
 
   filterTicketsHandler = () => {
-    if ( this.state.isLoading === false ) {
+    if ( this.state.isLoading ) {
       const filteredTicketsList = this.state.ticketsList.filter(
         ticket => this.state.transferInputs[ticket.stops].checked
       );
@@ -81,34 +81,40 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    http('http://localhost:3000/data/tickets.json')
+    getTickets()
       .then(data => {
         this.setState({
           ticketsList: sortingArray(data.tickets),
-          isLoading: false,
+          isLoading: true,
         });
       });
   }
 
   render() {
+    if (!this.state.isLoading) {
+      return <Loader />;
+    }
+
     return (
       <div className="App Main">
-        <Loader loading={this.state.isLoading} />
-        <Header src={logo} />
-        <main className="MainContent">
-          <h1 className="visually-hidden">aviasales-test-task</h1>
-          <Filter
-            valutaInputs={this.state.valutaInputs}
-            valutaChange={this.changeValutaHandler}
-            transferInputs={this.state.transferInputs}
-            transferChange={this.changeTransferHandler}
-            filterTransfer={this.filterTicketsHandler}
-          />
-          <TicketsList
-            valutaData={this.state.valutaInputs}
-            data={this.filterTicketsHandler()}
-          />
-        </main>
+        <ErrorBoundary>
+          <Header src={logo} />
+          <main className="MainContent">
+            <h1 className="visually-hidden">aviasales-test-task</h1>
+            <ErrorBoundary>
+              <Filter
+                valutaInputs={this.state.valutaInputs}
+                valutaChange={this.changeValutaHandler}
+                transferInputs={this.state.transferInputs}
+                transferChange={this.changeTransferHandler}
+                filterTransfer={this.filterTicketsHandler} />
+            </ErrorBoundary>
+            <TicketsList
+              valutaData={this.state.valutaInputs}
+              data={this.filterTicketsHandler()}
+            />
+          </main>
+        </ErrorBoundary>
       </div>
     )
   }

@@ -8,9 +8,7 @@ import airplane from '../../img/airplane.svg';
 const findActiveValuta = valutaData => {
   let activeValuta = null;
   valutaData.forEach(valuta => {
-    if ( valuta.checked === true ) {
-      activeValuta = valuta;
-    }
+    if ( valuta.checked === true ) activeValuta = valuta;
   });
 
   return activeValuta;
@@ -46,13 +44,13 @@ export const TicketItem = ({
           </span>
         </button>
       </div>
+
       <div className="TicketItem__info">
         <TicketItemStep
           time={departure_time}
           cityA={origin}
           cityB={origin_name}
-          date={departure_date}
-        />
+          date={departure_date} />
 
         <div className="Transfer">
           <p>{ stops === 0 ? null : `${stops} ${transferFormatter(stops)}` }</p>
@@ -63,8 +61,7 @@ export const TicketItem = ({
           time={arrival_time}
           cityA={destination}
           cityB={destination_name}
-          date={arrival_date}
-        />
+          date={arrival_date} />
       </div>
     </li>
   );
