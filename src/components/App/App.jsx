@@ -17,6 +17,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       isLoading: false,
+      error: false,
       ticketsList: null,
       valutaInputs: [
         { inputValue: 'RUB', checked: true, ico: RUB, rates: 1 },
@@ -72,7 +73,7 @@ export default class App extends Component {
   }
 
   filterTicketsHandler = () => {
-    if ( this.state.isLoading ) {
+    if ( this.state.isLoading && !this.state.error ) {
       const filteredTicketsList = this.state.ticketsList.filter(
         ticket => this.state.transferInputs[ticket.stops].checked
       );
@@ -87,6 +88,14 @@ export default class App extends Component {
           ticketsList: sortingArray(data.tickets),
           isLoading: true,
         });
+      })
+      .catch((httpError) => {
+        this.setState({
+          isLoading: true,
+          error: true,
+        });
+
+        throw new Error(`${httpError}`);
       });
   }
 
@@ -101,18 +110,17 @@ export default class App extends Component {
           <Header src={logo} />
           <main className="MainContent">
             <h1 className="visually-hidden">aviasales-test-task</h1>
-            <ErrorBoundary>
               <Filter
                 valutaInputs={this.state.valutaInputs}
                 valutaChange={this.changeValutaHandler}
                 transferInputs={this.state.transferInputs}
                 transferChange={this.changeTransferHandler}
                 filterTransfer={this.filterTicketsHandler} />
+            <ErrorBoundary>
+              <TicketsList
+                valutaData={this.state.valutaInputs}
+                data={this.filterTicketsHandler()} />
             </ErrorBoundary>
-            <TicketsList
-              valutaData={this.state.valutaInputs}
-              data={this.filterTicketsHandler()}
-            />
           </main>
         </ErrorBoundary>
       </div>

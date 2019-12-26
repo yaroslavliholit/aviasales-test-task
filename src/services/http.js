@@ -1,4 +1,4 @@
-const ticketsUrl = 'http://localhost:3000/data/tickets.json';
+const ticketsUrl = '/data/tickets.json';
 
 export const getTickets = async () => {
   const res = await fetch(ticketsUrl);
