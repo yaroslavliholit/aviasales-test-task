@@ -8,37 +8,37 @@
   .Transfer {
     width: 80%;
     margin: 30px auto;
-  }
 
-  .TicketItem__info {
-    padding: 20px 15px;
-    flex-direction: column;
-    align-items: center;
+    &__info {
+      padding: 20px 15px;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .Step {
     width: 100%;
-  }
 
-  .Step:first-child,
-  .Step:last-child {
-    text-align: center;
+    &:first-child,
+    &:last-child {
+      text-align: center;
+    }
   }
 }
 
 @media screen and (max-width: $tablet-s) {
   .TicketItem {
     flex-direction: column;
-  }
 
-  .TicketItem__promo {
-    width: 100%;
-    padding: 10px;
-  }
+    &__promo {
+      width: 100%;
+      padding: 10px;
+    }
 
-  .TicketItem__info {
-    width: 100%;
-    padding: 10px;
+    &__info {
+      width: 100%;
+      padding: 10px;
+    }
   }
 }
 
